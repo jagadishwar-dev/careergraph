@@ -133,10 +133,11 @@ public class CareerGraphDAO {
         try (Session session = driver.session()) {
 
             String cypher = """
-                MATCH (j:Job)-[:REQUIRES]->(s:Skill)
-                WITH j, collect(s.name) AS requiredSkills
+                MATCH (s:Skill)<-[:REQUIRES]-(j:Job)-[:BELONGS_TO]->(c:Category)
 
-                MATCH (j)-[:BELONGS_TO]->(c:Category)
+                WITH j,
+                     c,
+                     collect(s.name) AS requiredSkills
 
                 WITH j,
                      c,
@@ -153,10 +154,10 @@ public class CareerGraphDAO {
 
                 RETURN j.title AS title,
                        c.name AS category,
-                       size(requiredSkills) AS totalSkills,
-                       size(matchedSkills) AS matchedCount,
                        matchedSkills,
                        missingSkills,
+                       size(requiredSkills) AS totalSkills,
+                       size(matchedSkills) AS matchedCount,
                        (size(matchedSkills) * 100.0 /
                         size(requiredSkills)) AS matchPercentage
 
@@ -166,8 +167,7 @@ public class CareerGraphDAO {
             return session.run(
                     cypher,
                     Map.of("skills", skills)
-            )
-            .list(record -> {
+            ).list(record -> {
 
                 String title =
                         record.get("title").asString();
@@ -178,29 +178,24 @@ public class CareerGraphDAO {
                 double percentage =
                         record.get("matchPercentage").asDouble();
 
-                List<String> matchedSkills =
+                List<String> matched =
                         record.get("matchedSkills").asList(
                                 value -> value.asString()
                         );
 
-                List<String> missingSkills =
+                List<String> missing =
                         record.get("missingSkills").asList(
                                 value -> value.asString()
                         );
 
-                String matched =
-                        String.join(", ", matchedSkills);
-
-                String missing =
-                        String.join(", ", missingSkills);
-
                 return title
-                        + " | " + category
-                        + " | "
-                        + String.format("%.0f", percentage)
-                        + "% match"
-                        + " | " + matched
-                        + " | " + missing;
+                        + " | Category: " + category
+                        + " | Match: "
+                        + String.format("%.0f", percentage) + "%"
+                        + " | Matched: "
+                        + String.join(", ", matched)
+                        + " | Missing: "
+                        + String.join(", ", missing);
             });
         }
     }

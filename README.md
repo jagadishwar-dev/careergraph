@@ -710,6 +710,16 @@ They can then be displayed in this README using:
 ![Job Recommendations](docs/recommendations.png)
 ```
 
+## Demo
+
+### Hosted Application
+
+[CareerGraph Live Demo](https://careergraph-paxu.onrender.com/)
+
+### Screen Recording
+
+[Watch CareerGraph Demo](https://drive.google.com/file/d/19a5ErSp_fcftUkzdNmrqUkLOES0_5ckq/view?usp=drive_link)
+
 ---
 
 ## 20. Graph Data Model Diagram
