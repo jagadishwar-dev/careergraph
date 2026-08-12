@@ -718,7 +718,7 @@ They can then be displayed in this README using:
 
 ### Screen Recording
 
-[Watch CareerGraph Demo](https://drive.google.com/file/d/19a5ErSp_fcftUkzdNmrqUkLOES0_5ckq/view?usp=drive_link)
+[Watch CareerGraph Demo](https://drive.google.com/file/d/19a5ErSp_fcftUkzdNmrqUkLOES0_5ckq/view?usp=sharing)
 
 ---
 
