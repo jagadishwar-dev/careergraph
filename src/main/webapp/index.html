@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>CareerGraph | Smart Job Recommendations</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 70px;
+            background: white;
+            border-bottom: 1px solid #e2e8f0;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 8%;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: #2563eb;
+        }
+
+        .logo span {
+            color: #0f172a;
+        }
+
+        .nav-text {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        /* HERO */
+
+        .hero {
+            text-align: center;
+            padding: 75px 20px 45px;
+        }
+
+        .badge {
+            display: inline-block;
+
+            background: #eff6ff;
+            color: #2563eb;
+
+            padding: 8px 15px;
+            border-radius: 30px;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            line-height: 1.15;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: auto;
+
+            color: #64748b;
+            font-size: 17px;
+            line-height: 1.7;
+        }
+
+        /* MAIN CARD */
+
+        .main-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        .search-card {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+
+            padding: 32px;
+
+            box-shadow:
+                0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        .search-card h2 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .search-card .subtitle {
+            color: #64748b;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+
+            font-weight: 600;
+            font-size: 14px;
+
+            margin-bottom: 8px;
+        }
+
+        .input-wrapper {
+            position: relative;
+        }
+
+        input {
+            width: 100%;
+
+            padding: 16px 18px;
+
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px rgba(37, 99, 235, 0.12);
+        }
+
+        .example {
+            margin-top: 9px;
+
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        /* BUTTON */
+
+        button {
+            width: 100%;
+
+            margin-top: 22px;
+
+            padding: 15px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+            font-weight: 600;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        /* FEATURES */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+
+            gap: 18px;
+
+            margin-top: 25px;
+        }
+
+        .feature {
+            background: white;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 12px;
+
+            padding: 20px;
+
+            text-align: center;
+        }
+
+        .feature-icon {
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+
+        .feature h3 {
+            font-size: 14px;
+            margin-bottom: 7px;
+        }
+
+        .feature p {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+
+            padding: 25px;
+
+            color: #94a3b8;
+
+            font-size: 12px;
+
+            border-top: 1px solid #e2e8f0;
+
+            background: white;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 650px) {
+
+            .hero {
+                padding-top: 50px;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .navbar {
+                padding: 0 20px;
+            }
+
+            .nav-text {
+                display: none;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Career<span>Graph</span>
+        </div>
+
+        <div class="nav-text">
+            Smart Career Recommendations
+        </div>
+
+    </nav>
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="badge">
+            ✦ Graph-Powered Job Recommendations
+        </div>
+
+        <h1>
+            Find the right job<br>
+            for your <span>skills.</span>
+        </h1>
+
+        <p>
+            Enter your technical skills and CareerGraph will
+            analyze job requirements, calculate your match
+            percentage, and identify the skills you need to grow.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN -->
+
+    <main class="main-container">
+
+        <div class="search-card">
+
+            <h2>
+                Discover Your Career Matches
+            </h2>
+
+            <p class="subtitle">
+                Tell us what you know and we'll find suitable
+                career opportunities.
+            </p>
+
+
+            <form action="recommend" method="post">
+
+                <label for="skills">
+                    Your Skills
+                </label>
+
+                <div class="input-wrapper">
+
+                    <input
+                        type="text"
+                        id="skills"
+                        name="skills"
+                        placeholder="Java, SQL, Spring, Python..."
+                        required
+                    >
+
+                </div>
+
+                <div class="example">
+                    Separate multiple skills with commas
+                </div>
+
+
+                <button type="submit">
+                    🔍 Find Matching Jobs
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎯
+                </div>
+
+                <h3>
+                    Match Percentage
+                </h3>
+
+                <p>
+                    See how closely your skills match
+                    each job.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🧩
+                </div>
+
+                <h3>
+                    Skill Gap
+                </h3>
+
+                <p>
+                    Discover which skills you need
+                    to improve.
+                </p>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🕸️
+                </div>
+
+                <h3>
+                    Graph Powered
+                </h3>
+
+                <p>
+                    Recommendations are powered by
+                    connected career data.
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        CareerGraph · Intelligent Job Recommendation System
+
+    </footer>
+
+</body>
+
+</html>
