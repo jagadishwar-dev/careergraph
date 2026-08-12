@@ -241,6 +241,26 @@ For example, if a job requires 5 skills and the user has 3 of them:
 (3 / 5) × 100 = 60%
 ```
 
+### Multi-Hop Graph Traversal
+
+CareerGraph uses a multi-hop traversal to connect a user's skills to jobs
+and then to career categories.
+
+The main traversal is:
+
+Skill -> Job -> Category
+
+Using the graph relationship:
+
+(Skill)<-[:REQUIRES]-(Job)-[:BELONGS_TO]->(Category)
+
+This allows CareerGraph to identify which jobs require the user's skills
+and which career category those jobs belong to.
+
+This relationship-oriented query would require multiple tables and JOINs
+in a relational database, while the graph structure represents the
+relationships directly.
+
 ---
 
 ## 6. Multi-Hop Graph Traversal
@@ -455,6 +475,37 @@ COGNODB_PASSWORD=<your password>
 Do not commit actual database credentials to GitHub.
 
 ---
+
+## 12. Setting Up CognoDB
+
+CareerGraph uses CognoDB as its graph database.
+
+### 1. Create a CognoDB account
+
+Go to the CognoDB Cloud console and create an account.
+
+### 2. Create a free database instance
+
+Create a free `c0` instance and select the required region.
+
+### 3. Get the connection details
+
+CognoDB provides:
+
+- Bolt connection URI
+- Username
+- Password
+
+The application reads these values from environment variables.
+
+### 4. Configure environment variables
+
+Set:
+
+```text
+COGNODB_URI=<your CognoDB Bolt URI>
+COGNODB_USERNAME=<your CognoDB username>
+COGNODB_PASSWORD=<your CognoDB password>
 
 ## 12. Requirements
 
